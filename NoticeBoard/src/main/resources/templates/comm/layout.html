@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판</title>
+    <!--Jquery-->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+    <!--Jquery cookie-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!--sidebarcss-->
+    <link th:href="@{/css/sidebar.css}" rel="stylesheet" type="text/css">
+    <!--로그인한 유저가 로그인,회원가입 페이지 접근시 처리메세지-->
+    <script>
+        $(document).ready(function (){
+            var check = "[[${chk}]]";
+            if(check=="ylogin") {
+                var msg = "[[#{ylogin}]]";
+                alert(msg);
+            }
+        });
+    </script>
+
+    <!--banner.css-->
+    <style>
+        .main_banner {
+            max-width: 98%;
+            height: 70%;
+            background-image: url(https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FzdStb%2Fbtrfjc7uSX3%2FGLvlvdCAZ4jcyDZ6QSxYu0%2Fimg.jpg);
+            background-size: cover;
+            margin-top: 0;
+
+            text-align: left
+
+
+        }
+        .bannerContent {
+            font-family: 'Song Myung', serif;
+        }
+    </style>
+    <!--로그아웃 js-->
+    <script th:src="@{/js/logout.js}"></script>
+    <th:block layout:fragment="script"></th:block>
+</head>
+<body id="body-pd">
+    <!--상단 베너 -->
+    <div class="main_banner">
+        <div class="bannerContent">
+            <br>
+            <span><h1 style="padding-top: 40px; padding-left: 120px; font-size: 60px;">게시판</h1></span>
+            <br><br><br>
+            <span><h1 style="padding-top: 20px; padding-left: 100px;">공유합시다</h1></span>
+            <br><br><br>
+        </div>
+    </div>
+    <!--사이드 바-->
+    <div class="l-navbar" id="navbar">
+        <nav class="nav">
+            <div>
+                <div class="nav__list">
+                    <a href="/" class="nav__link active">
+                        <ion-icon name="chatbubbles-outline" class="nav__icon"></ion-icon>
+                        <span class="nav_name">게시판</span>
+                    </a>
+                </div>
+                <a onclick="sign_in()"  class="nav__link">
+                    <ion-icon name="log-in-outline" class="nav__icon"></ion-icon>
+                    <span class="nav_name">Log in</span>
+                </a>
+                <a onclick="sign_out()"  class="nav__link">
+                    <ion-icon name="log-out-outline" class="nav__icon"></ion-icon>
+                    <span class="nav_name">Log out</span>
+                </a>
+            </div>
+        </nav>
+    </div>
+
+
+    <th:block layout:fragment="content">
+
+        <!--이부분이 페이지마다 교체될 영역-->
+
+    </th:block>
+
+<!-- IONICONS -->
+<script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+</body>
+</html>

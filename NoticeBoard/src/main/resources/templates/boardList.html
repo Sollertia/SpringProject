@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{comm/layout}">
+<th:block layout:fragment="script">
+</th:block>
+<th:block layout:fragment="content">
+    <div style="width: 70%; margin: auto" >
+        <div class="container table-responsive">
+    <table class="table table-hover table-center table-bordered">
+        <thead class="table-light" style="text-align: center">
+        <tr>
+            <th style="width: 5%">번호</th>
+            <th style="width: 35%" >제목</th>
+            <th style="width: 4%">작성자명</th>
+            <th style="width: 1%">작성일</th>
+        </tr>
+        </thead>
+        <tbody th:each="ls:${list}">
+        <tr>
+            <td th:text="${ls.id}"></td>
+            <td><a th:href="@{/BoardDetail(id=${ls.id})}" th:utext="${ls.title}"></a></td>
+            <td th:text="${ls.writer}"></td>
+            <td th:text="${#strings.substring(ls.createdAt,0,10)}"></td>
+        </tr>
+        </tbody>
+    </table>
+            <hr>
+            <!--페이징처리-->
+            <nav aria-label="Page navigation example" style="margin-bottom: 5px">
+                <ul class="pagination justify-content-center" th:if="${page.totalPages>0}">
+                    <li class="page-item" th:if="${page.pageable.pageNumber>0}">
+                        <a class="page-link" th:href="@{/(page=${page.pageable.pageNumber - 1})}">Previous</a>
+                    </li>
+
+                    <li class="page-item" th:each="num:${#numbers.sequence(1 , page.totalPages )}">
+                        <a class="page-link" th:href="@{/(page=${num}-1)}" th:text="${num}"></a>
+                    </li>
+
+                    <li class="page-item" th:if="${page.pageable.pageNumber < page.totalPages - 1}">
+                        <a class="page-link" th:href="@{/(page=${page.pageable.pageNumber + 1})}">Next</a>
+                    </li>
+
+                </ul>
+            </nav>
+            <form action="/board/write" method="get">
+                <button class="btn btn-light" type="submit" style="width:10%; padding:5px; float: right;">글작성</button>
+            </form>
+    </div>
+    </div>
+
+
+
+</th:block>
+
+</html>

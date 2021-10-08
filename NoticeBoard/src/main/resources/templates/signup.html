@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <!--Jquery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
+
+  <meta charset="UTF-8">
+  <title>회원가입 페이지</title>
+  <script>
+    $(document).ready(function (){
+      <!--패스워드에 닉네임 포함해서 오류 - 예외처리로 가져온 값 사용하기-->
+      var pwdchk = "[[${errorCode}]]";
+      if(pwdchk != "") {
+        var msg = "에러코드: " + pwdchk + " 처리내용: " + "[[${errorMessage}]]";
+        alert(msg);
+      }
+      <!--@Valid 오류-->
+      var valid = "[[${validMessage}]]";
+      if(valid != "") {
+        alert(valid.toString())
+      }
+    });
+
+    // Username 중복확인
+    function chek(){
+      var username = $("#username").val();
+      if (username==""){
+        alert("Username을 채워주세요");
+        $("#username").focus();
+        return;
+      }
+      $.ajax({
+        type: 'POST',
+        url: '/user/redunancy',
+        contentType: "application/json",
+        data: JSON.stringify({username:username}),
+        success: function (response) {
+          if (response == "fail") {
+            alert("중복된 이름입니다. 다시 작성해주세요.");
+            $("#username").focus();
+            document.getElementById("check").style.display = "block";
+          } else if(response == "success"){
+            alert("사용하실 수 있는 Username입니다.");
+            document.getElementById("username").readOnly = true;
+            document.getElementById("check").style.display = "none";
+          }
+        }
+      });
+    }
+
+    function onclickAdmin() {
+// Get the checkbox
+      var checkBox = document.getElementById("admin-check");
+// Get the output text
+      var box = document.getElementById("admin-token");
+
+// If the checkbox is checked, display the output text
+      if (checkBox.checked == true){
+        box.style.display = "block";
+      } else {
+        box.style.display = "none";
+      }
+    }
+  </script>
+</head>
+<body>
+<div id="login-form">
+  <div id="login-title">Sign up NoticeBoard</div>
+
+  <form action="/user/signup" method="post">
+    <div class="login-id-label">Username</div>
+    <input type="text" name="username" id="username" placeholder="Username" class="login-input-box">
+    <div class="login-id-label">중복확인</div>
+    <button style="width: 200px; height: 40px" type="button" onclick="chek()"></button>
+    <div id="check" style="display: none"><sapn th:text="#{redunancy}" style="border-color: red"></sapn></div>
+    <div class="login-id-label">Password</div>
+    <input type="password" name="password" class="login-input-box">
+    <div class="login-id-label">Password 확인</div>
+    <input type="password" name="passwordcheck" class="login-input-box">
+    <div>
+      <input id="admin-check" type="checkbox" name="admin" onclick="onclickAdmin()" style="margin-top: 40px;">관리자
+      <input id="admin-token" type="password" name="adminToken" placeholder="관리자 암호" class="login-input-box" style="display:none">
+    </div>
+    <button id="login-id-submit">회원 가입</button>
+  </form>
+</div>
+</body>
+</html>
