@@ -69,7 +69,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 public class JpaConfiguration {}
 ```
 [참고사이트](https://stackoverflow.com/questions/51467132/spring-webmvctest-with-enablejpa-annotation)
---
+
 
 
 ## JPA id Auto_increment 문제 
@@ -78,7 +78,7 @@ public class JpaConfiguration {}
 - 원인은 JPA 1.5에서는 Hibernate의 Id 생성 규칙을 결정하는 설정값이 false가 기본값이여서 Hibernate5 부터 생긴 MySQL에서의 GenerationType.AUTO가 IDENTITY가 아닌 모든 TABLE id를 기본 시퀀스 전략으로 하는 설정을 사용하지 않았지만 2.0으로 바뀐 후 설정값이 true가 기본값이 되어서 GenerationType.AUTO를 사용하게 되었을 때 모든 테이블의 id시퀀스를 하나의 테이블로 관리한다.
 
 - 해결방법은 application.properties에서 하이버네이트의 use-new-id-generator-mappings을 false로 설정하거나 @GeneratedValue의 전략을 GenerationType.IDENTITY로 지정하면 해결된다.
---
+
 
 
 ## Hidden 태그의 보안문제
@@ -89,7 +89,7 @@ public class JpaConfiguration {}
 - 나는 이번 프로젝트에 유저의 id를 Hidden태그에 사용해서 구현을 했다. 확실히 좋지 않은 방법이라고 생각한다. 그래서 대안으로 생각한 것은 Session이나 쿠키에 저장해서 사용하는 방법이다.
 
 - 결론은 페이지 정보와 같은 데이터베이스나 개인프라이버시에 크게 영향을 끼치지 않는 정보들은 Hidden 태그를 사용해도 되고 그이외에 꼭 사용해야 한다면 Session이나 쿠키를 사용하면 좋을 것 같다.
---
+
 
 
 ## 보완해야 할 점
