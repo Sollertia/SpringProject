@@ -39,4 +39,4 @@
     - [x]  회원가입 구현 - username, password, 중복확인, 비밀번호일치확인
 - [x]  RDS-EC2로 배포해보기
 
-![API](github.com/Sollertia/SpringProject/blob/main/images/noticeboard_API.png)
+![API]("https://github.com/Sollertia/SpringProject/blob/main/images/noticeboard_API.png")
