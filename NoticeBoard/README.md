@@ -71,6 +71,7 @@ public class JpaConfiguration {}
 [참고사이트](https://stackoverflow.com/questions/51467132/spring-webmvctest-with-enablejpa-annotation)
 --
 
+
 ## JPA id Auto_increment 문제 
 - 처음 h2-Base에서 게시글을 작성하고 댓글을 작성했을 때 id 번호가 하나로 통일되서 증가하는 것을 확인한 후 mySQl사용시에도 같은 문제가 발생하는 것을 확인하고 문제를 인식하게 되었다.
 
@@ -78,6 +79,7 @@ public class JpaConfiguration {}
 
 - 해결방법은 application.properties에서 하이버네이트의 use-new-id-generator-mappings을 false로 설정하거나 @GeneratedValue의 전략을 GenerationType.IDENTITY로 지정하면 해결된다.
 --
+
 
 ## Hidden 태그의 보안문제
 - 사실 항상 Hidden 태그를 사용하면서 사용자가 데브툴스를 사용하여 확인하면 보안상 문제가 있지 않을까?라는 생각을 하기도 했고 토비의 스프링 책에서도 사용하지 말라고 되어있어서 이번 프로젝트를 하면서 확실하게 사용해도 되는건지에 대해서 결정을 하고 싶었다.
@@ -88,6 +90,7 @@ public class JpaConfiguration {}
 
 - 결론은 페이지 정보와 같은 데이터베이스나 개인프라이버시에 크게 영향을 끼치지 않는 정보들은 Hidden 태그를 사용해도 되고 그이외에 꼭 사용해야 한다면 Session이나 쿠키를 사용하면 좋을 것 같다.
 --
+
 
 ## 보완해야 할 점
 - SpringSecurity에서  WebSecurityConfigurerAdapter의 configure을 이용하여 http.authorizeRequests() 설정을 했는데 경로문제로 많은 시간을 소모했다. 이제 어느정도 구조와 기능에 대해서 파악은 했지만 깊게 들어가면 아직도 이해가 되지않는 부분이 많다. 앞으로 Security를 사용하게 될 수도 있으니 구조와 원리에 대해서 확실하게 학습할 필요가 있다.
