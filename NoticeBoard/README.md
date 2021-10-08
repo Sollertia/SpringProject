@@ -1,6 +1,6 @@
 # NoticeBoard
 
-# SpringBoot를 활용한 게시판 만들기
+## SpringBoot를 활용한 게시판 만들기
 
 ⇒ 기존에 구현했던 CRUD기능이 있던 기본 게시판에 Security를 사용하여 로그인,회원가입 추가, OAuth2 카카오로그인 구현
 
@@ -38,5 +38,36 @@
 - [x]  테스트 코드 만들기 - 테스트케이스는 최소2개이상
     - [x]  회원가입 구현 - username, password, 중복확인, 비밀번호일치확인
 - [x]  RDS-EC2로 배포해보기
+---
 
-![API]("https://github.com/Sollertia/SpringProject/blob/main/images/noticeboard_API.png")
+![API](https://github.com/Sollertia/SpringProject/blob/main/images/noticeboard_API.png)
+
+---
+
+## 💻 기술스택
+
+    SpringBoot, JPA, Gradle, Junit, Thymeleaf, SpringSecurity, H2-Base, MySql
+---
+
+## Trouble Shooting Key Point
+
+### Junit Controller MVC Test 시 발생한 JPA meta model 오류
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
